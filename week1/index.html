@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Week 1</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div id="container">
+  <h1>Hello welcome to week 1!</h1>
+  <p>{{ message }}</p>
+  <input type="text" v-model="message">
+  <input v-on:click="uppercaseMessage" type="submit" value="Toggle Case!">
+  <ul>
+    <li v-for="student in students">{{ student.name }} Born {{ student.dob }} has {{ student.eyeColor }} eyes</li>
+  </ul>
+
+  <div class="form">
+    <input name="name" type="text" v-model="placeholder.name">
+    <input name="date" type="date" v-model="placeholder.dob">
+    <input name="eyeColor" type="text" v-model="placeholder.eyeColor">
+    <input @click="addStudent" type="submit" value="Add Student">
+  </div>
+</div>
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
