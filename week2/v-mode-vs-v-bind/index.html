@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Week 2</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div id="container">
+  {{ message }}
+  <div class="form-group">
+    <label for="input-bind">Input with v-value</label>
+    <input id="input-bind" v-bind:value="message">
+  </div>
+  <div class="form-group">
+    <label for="input-model">Input with v-model</label>
+    <input id="input-model" v-model="message">
+  </div>
+
+  <div class="form-group">
+    <label for="input-bind-model">Input with bind with event!</label>
+    <input id="input-bind-model" v-bind:value="message" v-on:input="message = $event.target.value">
+  </div>
+
+</div>
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
