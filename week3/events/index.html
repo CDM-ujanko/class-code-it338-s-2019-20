@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Week 3 - events</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous">
+</head>
+<body>
+
+<div id="container">
+  {{ message }}
+  <div class="container">
+    <p>Click event with no params:</p>
+    <button v-on:click="buttonClickEventHandler">Click me!</button>
+  </div>
+  <div class="container">
+    <p>Click event WITH params:</p>
+    <button v-on:click="handlerWithData($event, 'some stuff!')">Click me!</button>
+  </div>
+
+  <div class="container">
+    <label>On input event example!</label>
+    <input @input="inputChangeHandler">
+  </div>
+
+  <div class="container">
+    <p>Preventing default event behaviour</p>
+    <a href="https://google.com" @click.prevent="clickHandler">Go to the googs!</a>
+  </div>
+
+  <div class="container">
+    <form action="/bla" v-on:submit.prevent>
+      <p>Preventing default event behaviour</p>
+      <input name="name" value="bob">
+      <button type="submit">Submit Form</button>
+    </form>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <div class="container parent" @click.stop="parentClickEvent">
+    <a href="https://google.com" @click.prevent.stop="clickHandler">Go to the googs!</a>
+    <button @click="childClickEvent">Click me!</button>
+  </div>
+</div>
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Week 3 - Vue custom events</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous">
+</head>
+<body>
+
+<div id="app">
+  {{ message }}
+  <input v-model="message">
+  <my-component :message="message" @message-change="messageChangeHandler"></my-component>
+  {{modelValue}}
+  <model-example v-model="modelValue"></model-example>
+  <div class="container">
+  </div>
+</div>
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

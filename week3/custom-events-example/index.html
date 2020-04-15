@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Week 3 - Voting app</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous">
+</head>
+<body>
+
+<div id="app">
+  <div class="characters container">
+    <span> The total votes: {{totalVotes}}</span>
+    <character
+        v-for="char in characters"
+        :name="char.name"
+        class="character"
+        @vote-up="addTotal"
+        @vote-down="removeTotal">
+      <template v-slot:header class="container">
+        {{char.name}} has the power to {{char.power}}
+      </template>
+      <template v-slot:footer>
+        Trademark Disney &copy;
+      </template>
+    </character>
+  </div>
+</div>
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
