@@ -3,13 +3,16 @@
     <div class="field">
       <label class="label" for="name">Name</label>
       <div class="control">
-        <input type="text" id="name" v-model="char.name"/>
+        <input class="input" type="text" id="name" v-model="char.name"/>
       </div>
     </div>
 
-    <label for="power">Power</label>
-    <input type="text" id="power" v-model="char.power"/>
-
+    <div class="field">
+      <label class="label" for="power">Power</label>
+      <div class="control">
+        <input class="input" type="text" id="power" v-model="char.power"/>
+      </div>
+    </div>
     <button type="submit">Update</button>
   </form>
 </template>
