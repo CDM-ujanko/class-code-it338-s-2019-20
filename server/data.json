@@ -1,0 +1,36 @@
+{
+  "characters": [
+    {
+      "name": "Frodo Baggins",
+      "power": "Blabla"
+    },
+    {
+      "name": "Percy Jackson",
+      "power": "Has a sword and can control water or whatever."
+    },
+    {
+      "name": "Harry Potter",
+      "power": "Has a want and a scar!"
+    },
+    {
+      "name": "Luke Skywalker",
+      "power": "Has a lightsaber and things!"
+    },
+    {
+      "name": "Superman",
+      "power": "Can do what ever!"
+    },
+    {
+      "name": "Flash",
+      "power": "Runs fast"
+    },
+    {
+      "name": "The Dude!",
+      "power": "Some!"
+    },
+    {
+      "name": "Mario",
+      "power": "Some!"
+    }
+  ]
+}
