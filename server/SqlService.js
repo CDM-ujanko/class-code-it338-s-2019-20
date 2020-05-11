@@ -21,7 +21,9 @@ class SqlService {
     this.connection.query(`CREATE TABLE IF NOT EXISTS chars (
       id INT NOT NULL AUTO_INCREMENT,
       name VARCHAR(100) NOT NULL,
-      power VARCHAR(200) NOT NULL,
+      description LONGTEXT NOT NULL,
+      image VARCHAR(2083) NOT NULL,
+      votes INT NOT NULL DEFAULT 0,
       PRIMARY KEY (id)
     )`, (err, res, field) => {
       console.log('Created DB', err, res, field);
@@ -38,12 +40,16 @@ class SqlService {
     this.connection.query(`SELECT * FROM chars WHERE id = ?`, [id], callback)
   }
 
-  createCharacter(name, power, callback) {
-    this.connection.query(`INSERT INTO chars SET ?`, {name: name, power: power}, callback);
+  createCharacter(char, callback) {
+    this.connection.query(`INSERT INTO chars SET ?`, char, callback);
   }
 
   getCharacters(callback) {
     this.connection.query('SELECT * FROM chars;', callback)
+  }
+
+  updateCharacter(char, callback) {
+    this.connection.query(`UPDATE chars SET ? WHERE id = ?`, char, callback);
   }
 
   closeConnection() {

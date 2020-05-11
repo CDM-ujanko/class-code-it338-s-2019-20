@@ -1,9 +1,6 @@
 const SqlService = require('./SqlService');
 const express = require("express");
 const bodyParser = require("body-parser");
-
-const fs = require("fs");
-
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,6 +15,7 @@ app.use(function(req, res, next) {
 
 let router = express.Router();
 
+const REQUIRED_CHAR_FIELDS = ['name', 'description'];
 
 app.get('/', (req, res) => {
   res.json('Hello and welcome to my amazing character api!');
@@ -39,18 +37,20 @@ router.route('/character/:id')
         return;
       }
 
-      if (!req.body.name) {
-        res.json('Please provide a name!');
+      let missingFields = REQUIRED_CHAR_FIELDS.filter((field) => !req.body[field]);
+
+      if (missingFields.length) {
+        res.status(500).json(`Error is following fields ${missingFields}`);
         return;
       }
 
-      if (!req.body.power) {
-        res.json('Please provide a power!');
-        return;
-      }
-
-      updateChar(req.params.id, req.body.name, req.body.power);
-      res.json('OK!');
+      SqlService.updateCharacter(char, (err, results, fields) => {
+        if (err) {
+          res.status(500).json(err);
+        } else {
+          res.json(results);
+        }
+      });
     });
 
 router.route('/characters')
@@ -61,20 +61,16 @@ router.route('/characters')
     })
 
     .post((req, res) => {
+
       console.log('POST!');
-      if (!req.body.name) {
-        res.json('Please provide a name!');
-        return;
+      let missingFields = REQUIRED_CHAR_FIELDS.filter((field) => !req.body[field]);
+
+      if (missingFields.length) {
+        res.status(500).json(`Error is following fields ${missingFields}`);
+        return ;
       }
 
-      if (!req.body.power) {
-        res.json('Please provide a power!');
-        return;
-      }
-
-      console.log(req.body);
-
-      SqlService.createCharacter(req.body.name, req.body.power, (err, results, fields) => {
+      SqlService.createCharacter(req.body, (err, results, fields) => {
         console.log('Callback!', err , results, fields);
         if (err) {
           res.status(500).json(err);

@@ -1,35 +1,35 @@
 <template>
-  <div>
-    <h3>{{ name }} with the power to: {{ power }} has {{ votes}} </h3>
-    <edit-char :id="id" :name="name" :power="power" @update="update"/>
-    <header>
-      <slot name="header"></slot>
-    </header>
-    <button
-        class="btn btn-primary"
-        @click="voteUp">
-      Vote Up
-    </button>
-    <button
-        class="btn btn-danger"
-        @click="voteDown">
-      Vote Down
-    </button>
+  <div class="box container section">
+    <h2 class="title is-2">{{ char.name }} </h2>
+    <div class="section">
+      <figure class="image is-128x128">
+        <img :src="char.image">
+      </figure>
+      <div v-html="char.description"></div>
+      <!--<edit-char :id="id" :name="name" :power="power" @update="update"/>-->
+      <br/>
+      <h3 class="subtitle is-5">Has {{ votes }} {{ votes === 1 ? 'vote' : 'votes'}}</h3>
+      <header>
+        <slot name="header"></slot>
+      </header>
+    </div>
+    <div class="buttons">
+      <button class="button is-primary" @click="voteUp">Vote Up</button>
+      <button class="button is-danger" @click="voteDown">Vote Down</button>
+    </div>
   </div>
 </template>
 
 <script>
-import EditChar from './EditChar.vue';
+// import EditChar from './EditChar.vue';
 
 export default {
   name: 'Character',
   components: {
-    EditChar
+    // EditChar
   },
   props: {
-    id: Number,
-    name: String,
-    power: String
+    char: Object
   },
 
   data: function () {

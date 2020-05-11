@@ -3,17 +3,27 @@
     <div class="field">
       <label class="label" for="name">Name</label>
       <div class="control">
-        <input class="input" type="text" id="name" v-model="char.name"/>
+        <input class="input" type="text" id="name" v-model="fields.name"/>
       </div>
+      <p class="help">The name of the character.</p>
     </div>
 
     <div class="field">
-      <label class="label" for="power">Power</label>
+      <label class="label" for="image">Image</label>
       <div class="control">
-        <input class="input" type="text" id="power" v-model="char.power"/>
+        <input class="input" type="text" id="image" v-model="fields.image"/>
       </div>
+      <p class="help">Link for the char profile picture.</p>
     </div>
-    <button type="submit">Update</button>
+
+    <div class="field">
+      <label class="label" for="power">Description</label>
+      <div class="control">
+        <textarea class="textarea" id="power" v-model="fields.description"></textarea>
+      </div>
+      <p>A little something about him/her</p>
+    </div>
+    <button type="submit" class="button is-primary">{{ isNew ? 'Create' : 'Update'}}</button>
   </form>
 </template>
 
@@ -23,38 +33,44 @@
   export default {
     name: "EditChar",
     props: {
-      id: Number,
-      name: String,
-      power: String
+      char: Object
     },
 
-    data: () => {
+    data: function () {
+      console.log(this.char);
       return {
-        char: {
-          id: 0,
-          name: '',
-          power: ''
-        }
+        fields: Object.assign({}, this.char)
       }
     },
 
-  mounted() {
-    console.log(this);
-    this.char.id = this.id;
-    this.char.name = this.name;
-    this.char.power = this.power;
-  },
+    computed: {
+      isNew: function () {
+        return !!this.char.id
+      }
+    },
 
     methods: {
       send() {
-        axios.put(`http://localhost:3000/api/character/${this.id}`, this.char)
-            .then((res) => {
-              console.warn('We got a response!', res);
-              this.$emit('update', this.char)
-            })
-            .catch((error) => {
-              console.error(error);
-            })
+        if (this.isNew) {
+          axios.put(`http://localhost:3000/api/character/${this.this.fields.id}`, this.fields)
+              .then((res) => {
+                console.warn('We got a response!', this.fields);
+                this.$emit('update', res)
+              })
+              .catch((error) => {
+                console.error(error);
+              })
+        } else {
+          axios.post(`http://localhost:3000/api/characters/`, this.fields)
+              .then((res) => {
+                console.warn('We got a response!', res);
+                this.fields.id = res.insertId;
+                this.$emit('update', this.fields)
+              })
+              .catch((error) => {
+                console.error(error);
+              })
+        }
       }
     }
   }

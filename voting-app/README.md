@@ -1,5 +1,7 @@
 # voting-app
 
+Vue voting application
+
 ## Project setup
 ```
 npm install
