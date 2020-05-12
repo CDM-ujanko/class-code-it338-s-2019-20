@@ -2,6 +2,8 @@ const SqlService = require('./SqlService');
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey('API_KEY');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -78,6 +80,23 @@ router.route('/characters')
         res.json(results);
       })
     });
+
+router.route('/submit-form/')
+    .post((req, res) => {
+      console.log('SUBMITTING FORM!');
+      console.log(req.body);
+
+      const msg = {
+        to: 'ujankovi@deaul.edu.',
+        from: 'mynodeserver@nodeserver.com',
+        subject: 'Sending with Twilio SendGrid is Fun',
+        text: 'and easy to do anywhere, even with Node.js',
+        html: req.body.name + 'said' + req.body.message,
+      };
+
+      sgMail.send(msg);
+    });
+
 
 
 app.use('/api', router);

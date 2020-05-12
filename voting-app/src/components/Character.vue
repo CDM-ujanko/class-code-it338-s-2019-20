@@ -1,6 +1,6 @@
 <template>
   <div class="box container section">
-    <h2 class="title is-2">{{ char.name }} </h2>
+    <router-link :to="'/character/' + char.id" class="title is-2">{{ char.name }} </router-link>
     <div class="section">
       <figure class="image is-128x128">
         <img :src="char.image">
@@ -66,5 +66,9 @@ export default {
   button {
     padding: 10px;
     color: #000;
+  }
+
+  figure.image {
+    overflow: hidden;
   }
 </style>
