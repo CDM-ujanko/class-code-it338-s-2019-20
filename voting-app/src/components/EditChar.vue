@@ -56,6 +56,7 @@
               .then((res) => {
                 console.warn('We got a response!', this.fields);
                 this.$emit('update', res)
+
               })
               .catch((error) => {
                 console.error(error);
@@ -65,7 +66,7 @@
               .then((res) => {
                 console.warn('We got a response!', res);
                 this.fields.id = res.insertId;
-                this.$emit('update', this.fields)
+                this.$store.commit('addCharacter', this.fields)
               })
               .catch((error) => {
                 console.error(error);

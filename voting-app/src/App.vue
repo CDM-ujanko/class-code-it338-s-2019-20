@@ -7,7 +7,8 @@
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <span v-if="loggedUser">Hi {{ loggedUser }}</span>
+          <span v-if="loggedUser">Hi {{ loggedUser }}, <span @click="logout">logout</span></span>
+          <router-link to="/login" v-else class="navbar-item">Login</router-link>
         </div>
       </div>
     </nav>
@@ -24,12 +25,10 @@ export default {
     loggedUser: state => state.loggedUser
   }),
 
-  mounted() {
-    setTimeout(() => {
-      console.log('Changing state!');
-      // this.$store.state.loggedUser = 'Bla!';
-      this.$store.commit('login', {name : 'User 2' , last: 'bla'});
-    }, 3000);
+  methods: {
+    logout() {
+      this.$store.commit('logout');
+    }
   }
 }
 </script>

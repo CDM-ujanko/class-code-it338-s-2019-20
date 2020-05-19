@@ -8,7 +8,7 @@
       <div v-html="char.description"></div>
       <!--<edit-char :id="id" :name="name" :power="power" @update="update"/>-->
       <br/>
-      <h3 class="subtitle is-5">Has {{ votes }} {{ votes === 1 ? 'vote' : 'votes'}}</h3>
+      <h3 class="subtitle is-5">Has {{ char.votes }} {{ char.votes === 1 ? 'vote' : 'votes'}}</h3>
       <header>
         <slot name="header"></slot>
       </header>

@@ -50,7 +50,6 @@
       <div class="control">
         <button class="button is-link" :class="{'is-disabled': !canSubmit}" @click="submit">Submit</button>
       </div>
-
     </div>
   </div>
 </template>

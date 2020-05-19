@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  const axios = require('axios');
+  import {mapGetters} from 'vuex';
 
   import EditChar from '../components/EditChar';
   import Character from '../components/Character.vue'
@@ -27,7 +27,7 @@
 
     data: function () {
       return {
-        characters: [],
+        // characters: [],
         emptyChar: {
           name: '',
           description : '',
@@ -36,48 +36,18 @@
       }
     },
 
+    computed: mapGetters({
+      characters: 'orderedCharacters'
+    }),
+
     created() {
-      console.log('Created!');
-      console.log(this);
-
-      setTimeout(() => {
-        console.log('Changing state!');
-        // this.$store.state.loggedUser = 'Bla!';
-        this.$store.commit('login', 'User 2' , 'Some');
-      }, 6000);
-
-      //  Note the problems with JS scope and this
-      // axios.get('http://localhost:3000/api/characters')
-      //     .then(function (response) {
-      //       console.log(this);
-      //       // handle success
-      //       console.log(response);
-      //       this.characters = response.data.characters;
-      //     }.bind(this));
-
-      axios.get('http://localhost:3000/api/characters')
-          .then((res) => {
-            console.log(this);
-            // handle success
-            console.log(res);
-            this.characters = res.data;
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-          .then(function () {
-            // always executed
-            console.log('I am always here!')
-          });
+      this.$store.dispatch('fetchCharacters');
     },
 
     methods: {
       update(char) {
-        console.warn('Parent got the char!', char);
         this.characters[char.id].name = char.name;
         this.characters[char.id].power = char.power;
-
       }
     }
   }
