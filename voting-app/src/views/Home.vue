@@ -39,6 +39,13 @@
     created() {
       console.log('Created!');
       console.log(this);
+
+      setTimeout(() => {
+        console.log('Changing state!');
+        // this.$store.state.loggedUser = 'Bla!';
+        this.$store.commit('login', 'User 2' , 'Some');
+      }, 6000);
+
       //  Note the problems with JS scope and this
       // axios.get('http://localhost:3000/api/characters')
       //     .then(function (response) {

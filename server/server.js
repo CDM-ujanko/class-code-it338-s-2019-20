@@ -87,11 +87,11 @@ router.route('/submit-form/')
       console.log(req.body);
 
       const msg = {
-        to: 'ujankovi@deaul.edu.',
+        to: 'bug24b@gmail.com',
         from: 'mynodeserver@nodeserver.com',
         subject: 'Sending with Twilio SendGrid is Fun',
         text: 'and easy to do anywhere, even with Node.js',
-        html: req.body.name + 'said' + req.body.message,
+        html: req.body.name + ' said ' + req.body.message,
       };
 
       sgMail.send(msg);

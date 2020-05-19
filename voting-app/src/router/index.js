@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home';
 import Contact from '../views/Contact';
 import Character from '../views/Character';
+import Login from '../views/Login';
 
 Vue.use(VueRouter);
 
@@ -21,15 +22,18 @@ const routes = [
     name: 'Character',
     component: Character
   }, {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  }, {
     path: '*',
     component: () => import(/* webpackChunkName: "404" */ '../views/404.vue')
   }
 ];
 
-const router = new VueRouter({
+export default new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 });
 
-export default router
