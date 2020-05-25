@@ -7,7 +7,10 @@ const axios = require('axios');
 
 export default new Vuex.Store({
   state: {
-    loggedUser: '',
+    loggedUser: {
+      firstName: 'Uros',
+      lastName: 'Jankovic'
+    },
     characters: []
   },
 
@@ -34,6 +37,14 @@ export default new Vuex.Store({
     // passParams: state => id => {
     //   return state.characters.sort((a, b) => b.votes  - a.votes);
     // }
+
+    fullName: state => {
+      if (!state.loggedUser) {
+        return '';
+      }
+      return state.loggedUser.firstName + ' ' + state.loggedUser.lastName;
+    }
+
   },
 
   actions: {

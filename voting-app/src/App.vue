@@ -7,7 +7,7 @@
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <span v-if="loggedUser">Hi {{ loggedUser }}, <span @click="logout">logout</span></span>
+          <span v-if="loggedUser">Hi {{ fullName }}, <span @click="logout">logout</span></span>
           <router-link to="/login" v-else class="navbar-item">Login</router-link>
         </div>
       </div>
@@ -17,13 +17,21 @@
 </template>
 
 <script>
-  import { mapState} from 'vuex';
+  import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'App',
-  computed: mapState({
-    loggedUser: state => state.loggedUser
-  }),
+  computed: {
+    myLocalComputed: function () {
+      return 'Some string!'
+    },
+    ...mapGetters({
+      fullName: 'fullName'
+    }),
+    ...mapState({
+      loggedUser: state => state.loggedUser,
+    })
+  },
 
   methods: {
     logout() {
