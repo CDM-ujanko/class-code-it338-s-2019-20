@@ -1,10 +1,12 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    Count: {{ count }}
     <p>outside!</p>
     <div class="my-div">
       <p>My text</p>
       <span>My span!</span>
+      <button @click="add">Add one</button>
     </div>
   </div>
 </template>
@@ -14,6 +16,17 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data: function () {
+    return {
+      count: 0
+    };
+  },
+
+  methods: {
+    add() {
+      this.count++;
+    }
   }
 }
 </script>
@@ -26,14 +39,6 @@ export default {
   }
 
   $text-color: red;
-
-  /*.my-div p {*/
-    /*color: red;*/
-  /*}*/
-
-  /*.my-div span {*/
-    /*color: red;*/
-  /*}*/
 
   .my-div {
     p {
