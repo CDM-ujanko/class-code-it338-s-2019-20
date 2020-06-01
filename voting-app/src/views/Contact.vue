@@ -103,7 +103,7 @@
 
         console.log('I am sending ', data);
 
-        axios.post(`http://localhost:3000/api/submit-form/`, data)
+        axios.post(`${this.$apiUrl}/api/submit-form/`, data)
             .then((res) => {
               console.log('All is well!', res);
             })

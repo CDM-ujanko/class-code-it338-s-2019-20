@@ -21,7 +21,7 @@
     },
 
     mounted() {
-      axios.get('http://localhost:3000/api/character/' + this.$route.params.id)
+      axios.get(this.$apiUrl + '/api/character/' + this.$route.params.id)
           .then((res) => {
             console.log(res.data.length);
             if (res.data && res.data.length > 0) {

@@ -49,7 +49,7 @@ export default new Vuex.Store({
 
   actions: {
     fetchCharacters (context) {
-      axios.get('http://localhost:3000/api/characters')
+      axios.get(this._vm.$apiUrl + '/api/characters')
           .then((res) => {
             console.log('response from api!', res);
             // this.characters = res.data;

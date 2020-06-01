@@ -52,7 +52,7 @@
     methods: {
       send() {
         if (this.isNew) {
-          axios.put(`http://localhost:3000/api/character/${this.this.fields.id}`, this.fields)
+          axios.put(`${this.$apiUrl}/api/character/${this.this.fields.id}`, this.fields)
               .then((res) => {
                 console.warn('We got a response!', this.fields);
                 this.$emit('update', res)
@@ -62,7 +62,7 @@
                 console.error(error);
               })
         } else {
-          axios.post(`http://localhost:3000/api/characters/`, this.fields)
+          axios.post(`http://192.241.185.37:3000/api/characters/`, this.fields)
               .then((res) => {
                 console.warn('We got a response!', res);
                 this.fields.id = res.insertId;
