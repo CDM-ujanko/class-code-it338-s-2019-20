@@ -62,7 +62,7 @@
                 console.error(error);
               })
         } else {
-          axios.post(`http://192.241.185.37:3000/api/characters/`, this.fields)
+          axios.post(`${this.$apiUrl}/api/characters/`, this.fields)
               .then((res) => {
                 console.warn('We got a response!', res);
                 this.fields.id = res.insertId;
