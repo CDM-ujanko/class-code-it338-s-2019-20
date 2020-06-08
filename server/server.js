@@ -32,12 +32,6 @@ router.route('/character/:id')
 
     .put((req, res) => {
       console.log(req.body);
-      let characters = [];
-
-      if (!characters[req.params.id]) {
-        res.json('No such id');
-        return;
-      }
 
       let missingFields = REQUIRED_CHAR_FIELDS.filter((field) => !req.body[field]);
 
@@ -46,7 +40,7 @@ router.route('/character/:id')
         return;
       }
 
-      SqlService.updateCharacter(char, (err, results, fields) => {
+      SqlService.updateCharacter(req.params.id, req.body, (err, results, fields) => {
         if (err) {
           res.status(500).json(err);
         } else {

@@ -48,8 +48,8 @@ class SqlService {
     this.connection.query('SELECT * FROM chars;', callback)
   }
 
-  updateCharacter(char, callback) {
-    this.connection.query(`UPDATE chars SET ? WHERE id = ?`, char, callback);
+  updateCharacter(id, char, callback) {
+    this.connection.query(`UPDATE chars SET ? WHERE id = ?`, [char, id], callback);
   }
 
   closeConnection() {
